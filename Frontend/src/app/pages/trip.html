@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trip</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main layout -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div id="sidebar" class="sidebar col-md-2"> 
+                <h3>TAXIGO!</h3>
+                <nav class="nav flex-column">
+                    <a class="nav-link" href="dashboard.html">Dashboard</a>
+                    <a class="nav-link active" href="trip.html">Trips</a>
+                    <a class="nav-link" href="driver.html">Drivers</a>
+                    <a class="nav-link" href="city.html">City</a>
+                    <a class="nav-link" href="login.html">Logout</a>
+                </nav>
+            </div>
+
+            <!-- Main content -->
+            <div id="content" class="col-md-10">
+                <div class="row bg-danger text-white py-5 d-flex justify-content-between align-items-center">
+                    <div class="col">
+                        <h1>Create Trip</h1>
+                    </div>
+                    <div class="col-auto">
+                        <button id="sidebarToggle" class="navbar-toggler d-md-none" type="button">
+                            <i class="fas fa-bars"></i> 
+                        </button>
+                        
+                    </div>
+                </div>
+                <br><br><br>
+                
+                <div class="col-md-12">
+                    <form>
+                        <div class="row mb-3">
+                            <label for="phoneNumber" class="col-sm-3 col-form-label">Phone number:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="phoneNumber" placeholder="10 digit phone number">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="customerName" class="col-sm-3 col-form-label">Name:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="customerName" placeholder="Customer Name">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="email" class="col-sm-3 col-form-label">Email id:</label>
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" id="email" placeholder="Email id">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="pickupLocation" class="col-sm-3 col-form-label">Pickup location:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="pickupLocation" placeholder="Pick up location">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="dropLocation" class="col-sm-3 col-form-label">Drop location:</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="dropLocation" placeholder="Drop location">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-9 offset-sm-3">
+                                <button type="submit" class="btn btn-success me-2">Book Ride</button> 
+                                <button type="button" class="btn btn-danger">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div> 
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            var sidebar = document.getElementById('sidebar'); 
+            sidebar.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
