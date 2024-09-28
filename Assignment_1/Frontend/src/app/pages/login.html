@@ -11,20 +11,27 @@
 <body>
     <div class="login-form">
         <h2 class="text-center">Login</h2>
-        <form >
+        <form onsubmit="redirectToDashboard(event)">
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>s
-                <input type="email" class="form-control" id="email" name="email" >
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" >
+                <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <button type="submit" class="btn btn-primary w-100"><a href="dashboard.html" class="btn btn-primary w-100">Login</a></button>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
         </form>
         <div class="text-center mt-3">
             <p>Don't have an account? <a href="signup.html">Sign Up here</a></p>
         </div>
     </div>
+
+    <script>
+        function redirectToDashboard(event) {
+            event.preventDefault();  // Prevent form from submitting
+            window.location.href = "dashboard.html";  // Redirect to dashboard.html
+        }
+    </script>
 </body>
 </html>

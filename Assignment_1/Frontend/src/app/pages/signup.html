@@ -11,7 +11,7 @@
 <body>
     <div class="signup-form">
         <h2 class="text-center">Sign Up</h2>
-        <form action="dashboard.html" method="POST">
+        <form onsubmit="redirectToDashboard(event)">
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input type="text" class="form-control" id="name" name="name" required>
@@ -34,5 +34,12 @@
             <p>Already have an account? <a href="login.html">Login here</a></p>
         </div>
     </div>
+
+    <script>
+        function redirectToDashboard(event) {
+            event.preventDefault();  // Prevent form from submitting
+            window.location.href = "dashboard.html";  // Redirect to dashboard.html
+        }
+    </script>
 </body>
 </html>
