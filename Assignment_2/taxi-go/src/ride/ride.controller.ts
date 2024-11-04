@@ -7,28 +7,18 @@ import { UpdateRideDto } from './dto/update-ride.dto';
 export class RideController {
   constructor(private readonly rideService: RideService) {}
 
-  @Post()
+  @Post('addRide')
   create(@Body() createRideDto: CreateRideDto) {
     return this.rideService.create(createRideDto);
   }
 
-  @Get()
+  @Get('getRideDetails')
   findAll() {
     return this.rideService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.rideService.findOne(id);
-  }
-
-  @Patch(':id')
+  @Patch('editRide/:id')
   update(@Param('id') id: string, @Body() updateRideDto: UpdateRideDto) {
     return this.rideService.update(id, updateRideDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.rideService.remove(id);
   }
 }

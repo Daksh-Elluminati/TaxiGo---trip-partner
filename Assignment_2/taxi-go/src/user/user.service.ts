@@ -16,11 +16,11 @@ export class UserService {
       return {user, msg: "User added successfully", status: "success"};
     } catch (error) {
       if (error.errorResponse.keyValue && error.errorResponse.keyValue.userEmail) {
-        throw new HttpException({msg: 'User email is already registered.', error}, HttpStatus.BAD_REQUEST);
+        throw new HttpException({msg: 'User email is already registered.', status: "failed", error}, HttpStatus.BAD_REQUEST);
       } else if (error.errorResponse.keyValue && error.errorResponse.keyValue.userPhone) {
-        throw new HttpException({msg: 'User phone number is already registered.', error}, HttpStatus.BAD_REQUEST);
+        throw new HttpException({msg: 'User phone number is already registered.', status: "failed", error}, HttpStatus.BAD_REQUEST);
       } else {
-        throw new HttpException({error }, HttpStatus.INTERNAL_SERVER_ERROR);
+        throw new HttpException({error, msg: 'User phone number is already registered.', status: "failed" }, HttpStatus.INTERNAL_SERVER_ERROR);
       }
     }
   }
