@@ -26,6 +26,102 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+# Uber Clone Backend
+
+This is the backend for an Uber Clone project, focusing on user and driver management, trip scheduling, and secure authentication. The backend is modular and scalable, designed to support future frontend integration.
+
+## Table of Contents
+- [Project Overview](#project-overview)
+- [Tech Stack](#tech-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Endpoints](#api-endpoints)
+- [Features](#features)
+- [Future Enhancements](#future-enhancements)
+- [Contributors](#contributors)
+
+---
+
+## Project Overview
+
+The Uber Clone backend facilitates essential ride-booking operations with APIs for:
+- User authentication
+- Driver management
+- Trip scheduling
+- City and vehicle type management
+
+This backend is secure and efficient, ready to integrate with a frontend.
+
+---
+
+## Tech Stack
+
+- **NestJS**: Framework for building scalable and maintainable server-side applications.
+- **MongoDB**: NoSQL database for managing users, drivers, trips, and vehicle types.
+- **JWT**: Provides secure user authentication.
+- **TypeScript**: Enables static typing for improved code quality.
+
+---
+
+## Installation
+
+### Prerequisites
+- **Node.js** (version 14 or later)
+- **MongoDB** (Ensure MongoDB is running)
+
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/uber-clone-backend.git
+
+2. Navigate into the project directory:
+    ```bash
+    cd uber-clone-backend
+3. Install the dependencies:
+  ```bash
+  npm install
+4. Configure environment variables:
+   Create a .env file in the root directory.
+   Add the following variables:
+   ```env
+    PORT=5000
+    MONGODB_URI=your_mongodb_connection_tring
+    JWT_SECRET=your_jwt_secret_key
+
+5. Start the server:
+   ```bash
+  npm start
+
+6. The server will run on http://localhost:5000 by default.
+
+
+
+  API Endpoints
+
+User Authentication
+POST /api/auth/register: Register a new user.
+POST /api/auth/login: Login a user and receive a JWT.
+Driver Management
+POST /api/drivers/register: Register a new driver.
+PATCH /api/drivers/:id: Update driver status.
+Trip Management
+POST /api/rides: Create a new trip.
+GET /api/rides/:id: Get trip details by ID.
+DELETE /api/rides/:id: Cancel a trip.
+City Management
+POST /api/cities: Add a new city.
+GET /api/cities: List all cities.
+Vehicle Type Management
+POST /api/vehicle-types: Add a new vehicle type.
+GET /api/vehicle-types: List all vehicle types.
+Features
+
+User Authentication: Secure login and registration using JWT.
+Driver Management: Admin functionality for managing driver onboarding and monitoring.
+Trip Scheduling: Book, view, and cancel trips.
+City Expansion: Admins can add cities to expand service areas.
+
+
 ## Project setup
 
 ```bash
