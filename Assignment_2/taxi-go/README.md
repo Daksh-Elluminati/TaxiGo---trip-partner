@@ -26,9 +26,9 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-# Uber Clone Backend
+# TaxiGo-trip Backend
 
-This is the backend for an Uber Clone project, focusing on user and driver management, trip scheduling, and secure authentication. The backend is modular and scalable, designed to support future frontend integration.
+This is the backend for an TaxiGo-trip project, focusing on user and driver management, trip scheduling, and secure authentication. The backend is modular and scalable, designed to support future frontend integration.
 
 ## Table of Contents
 - [Project Overview](#project-overview)
@@ -44,7 +44,7 @@ This is the backend for an Uber Clone project, focusing on user and driver manag
 
 ## Project Overview
 
-The Uber Clone backend facilitates essential ride-booking operations with APIs for:
+The TaxiGo-trip backend facilitates essential ride-booking operations with APIs for:
 - User authentication
 - Driver management
 - Trip scheduling
@@ -72,14 +72,15 @@ This backend is secure and efficient, ready to integrate with a frontend.
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/uber-clone-backend.git
+   git clone https://github.com/yourusername/TaxiGo-trip-backend.git
 
 2. Navigate into the project directory:
     ```bash
-    cd uber-clone-backend
+    cd TaxiGo-trip-backend
 3. Install the dependencies:
   ```bash
   npm install
+  
 4. Configure environment variables:
    Create a .env file in the root directory.
    Add the following variables:
