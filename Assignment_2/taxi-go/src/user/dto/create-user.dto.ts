@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsPhoneNumber, IsString } from "class-validator";
+import { IsArray, IsEmail, IsNotEmpty, IsPhoneNumber, IsString, IsStrongPassword } from "class-validator";
 
 export class CreateUserDto {
     @IsNotEmpty({message: "User name can't be empty"})
@@ -7,9 +7,13 @@ export class CreateUserDto {
 
     @IsNotEmpty({message: "User email can't be empty."})
     @IsEmail()
-    userEmail: String;
+    userEmail: string;
 
     @IsNotEmpty({message: "Driver phone number can't be empty."})
     @IsPhoneNumber()
-    userPhone: String;
+    userPhone: string;
+
+    @IsNotEmpty({message: "Driver phone number can't be empty."})
+    @IsStrongPassword()
+    userPassword: string;
 }

@@ -26,7 +26,7 @@ export class User{
             message: () => `Please enter a valid email!`
         }
     })
-    userEmail: String;
+    userEmail: string;
 
     @Prop({
         type: String,
@@ -40,6 +40,11 @@ export class User{
         }
     })
     userPhone: String;
+
+    @Prop() 
+    userPassword: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
+
+UserSchema.index({ email: 1 }, { unique: true });
