@@ -13,7 +13,7 @@ export class RideService {
   async create(createRideDto: CreateRideDto) : Promise<Object> {
     try {
       const ride = await new this.rideModel(createRideDto).save();
-      return {ride, msg: "Ride added successfully", status: "success"};
+      return {ride, msg: "User added successfully", status: "success"};
     } catch (error) {
       throw new HttpException({error, msg: "Internal server error while creating new ride.", status: "failed" }, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -26,22 +26,6 @@ export class RideService {
         throw new NotFoundException({msg: "Ride list is empty", status: "failed"});
       }
       return{rideList, msg: "Ride list found", status: "success"};
-    } catch (error) {
-      if (error.response && error instanceof NotFoundException) {
-        throw new HttpException({msg: error.getResponse()['msg'], status: "failed", error:error}, HttpStatus.NOT_FOUND);
-      } else {
-        throw new HttpException({msg: "Internal server error while getting ride details", status: "failed", error: error}, HttpStatus.INTERNAL_SERVER_ERROR);
-      }
-    }
-  }
-
-  async findOne(rideId: String) : Promise <Object> {
-    try {
-      const rideList = await this.rideModel.findOne({_id: rideId});
-      if (!rideList) {
-        throw new NotFoundException({msg: "Ride not found.", status: "failed"});
-      }
-      return{rideList, msg: "Ride found.", status: "success"};
     } catch (error) {
       if (error.response && error instanceof NotFoundException) {
         throw new HttpException({msg: error.getResponse()['msg'], status: "failed", error:error}, HttpStatus.NOT_FOUND);

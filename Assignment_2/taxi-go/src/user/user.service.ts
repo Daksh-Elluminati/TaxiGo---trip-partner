@@ -2,10 +2,8 @@ import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestj
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectModel } from '@nestjs/mongoose';
-import { User, userDocument } from 'src/schemas/user.schema';
+import { User } from 'src/schemas/user.schema';
 import { Model } from 'mongoose';
-import * as bcrypt from 'bcrypt';
-
 
 @Injectable()
 export class UserService {
@@ -14,15 +12,7 @@ export class UserService {
 
   async create(createUserDto: CreateUserDto) : Promise<Object> {
     try {
-      // Hash the password before saving
-      const saltOrRounds = 10;
-      const hashedPassword = await bcrypt.hash(createUserDto.userPassword, saltOrRounds);
-
-      const user = await new this.userModel({
-        ...createUserDto,
-        userPassword: hashedPassword,
-      }).save();
-      
+      const user = await new this.userModel(createUserDto).save();
       return {user, msg: "User added successfully", status: "success"};
     } catch (error) {
       if (error.errorResponse.keyValue && error.errorResponse.keyValue.userEmail) {
@@ -42,22 +32,6 @@ export class UserService {
         throw new NotFoundException({msg: "User list is empty", status: "failed"});
       }
       return{userList, msg: "User list found", status: "success"};
-    } catch (error) {
-      if (error.response && error instanceof NotFoundException) {
-        throw new HttpException({msg: error.getResponse()['msg'], status: "failed", error:error}, HttpStatus.NOT_FOUND);
-      } else {
-        throw new HttpException({msg: "Internal server error while getting driver details", status: "failed", error: error}, HttpStatus.INTERNAL_SERVER_ERROR);
-      }
-    }
-  }
-
-  async findOne(email: String) : Promise< userDocument> {
-    try {
-      const user = await this.userModel.findOne({userEmail: email});
-      if (!user) {
-        throw new NotFoundException({msg: "User not found.", status: "failed"});
-      }
-      return user;
     } catch (error) {
       if (error.response && error instanceof NotFoundException) {
         throw new HttpException({msg: error.getResponse()['msg'], status: "failed", error:error}, HttpStatus.NOT_FOUND);
