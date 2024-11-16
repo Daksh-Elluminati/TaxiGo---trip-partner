@@ -3,6 +3,9 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthGuard } from 'src/auth/auth.guard';
+import { RolesGuard } from 'src/roles/roles.guard';
+import { Roles } from 'src/roles.decorator';
+import { Role } from 'src/role.enum';
 
 @Controller('user')
 export class UserController {  
@@ -14,24 +17,28 @@ export class UserController {
   }
 
   @Get('getUserDetails')
-  @UseGuards(AuthGuard)
+  @Roles(Role.Admin)
+  @UseGuards(AuthGuard, RolesGuard)
   findAll() {
     return this.userService.findAll();
   }
 
   @Get('getUser')
+  @Roles(Role.Admin, Role.User)
   findOne(@Body('userEmail') email: String) {
     return this.userService.findOne(email);
   }
 
   @Patch('editUser/:id')
-  @UseGuards(AuthGuard)
+  @Roles(Role.Admin, Role.User)
+  @UseGuards(AuthGuard, RolesGuard)
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {    
     return this.userService.update(id, updateUserDto);
   }
 
   @Delete('deleteUser/:id')
-  @UseGuards(AuthGuard)
+  @Roles(Role.Admin, Role.User)
+  @UseGuards(AuthGuard, RolesGuard)
   remove(@Param('id') id: string) {
     return this.userService.remove(id);
   }
