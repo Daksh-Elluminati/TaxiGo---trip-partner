@@ -16,4 +16,8 @@ export class CreateUserDto {
     @IsNotEmpty({message: "Driver phone number can't be empty."})
     @IsStrongPassword()
     userPassword: string;
+
+    @IsArray({ message: "User roles should be an array of strings." })
+    @IsString({ each: true, message: "Each user role should be a string." })
+    userRoles: String;
 }

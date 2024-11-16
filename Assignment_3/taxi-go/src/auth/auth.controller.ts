@@ -11,4 +11,10 @@ export class AuthController {
   async signIn(@Body() signInDto: SignInDto) {
     return await this.authService.signIn(signInDto.userEmail, signInDto.userPassword);
   }
+
+  @UseGuards(AuthGuard)
+  @Get('profile')
+  getProfile(@Request() req){
+    return req.user;
+  }
 }

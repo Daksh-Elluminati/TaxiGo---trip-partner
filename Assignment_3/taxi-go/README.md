@@ -26,147 +26,126 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-# TaxiGo-trip Backend
+# TaxiGo Backend
 
-This is the backend for an TaxiGo-trip project, focusing on user and driver management, trip scheduling, and secure authentication. The backend is modular and scalable, designed to support future frontend integration.
+## Project Description
+The TaxiGo Backend is a modular and scalable backend system for managing a ride-booking application. It includes secure user authentication, role-based authorization, and comprehensive user management. Built with NestJS and MongoDB, it ensures robust performance, security, and easy frontend integration.
 
-## Table of Contents
-- [Project Overview](#project-overview)
-- [Tech Stack](#tech-stack)
-- [Installation](#installation)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Features](#features)
-- [Future Enhancements](#future-enhancements)
-- [Contributors](#contributors)
-
----
-
-## Project Overview
-
-The TaxiGo-trip backend facilitates essential ride-booking operations with APIs for:
-- User authentication
-- Driver management
-- Trip scheduling
-- City and vehicle type management
-
-This backend is secure and efficient, ready to integrate with a frontend.
-
----
+## Features
+- **Authentication**: JWT-based login system.
+- **Authorization**: Role-based access control with custom decorators and guards.
+- **User Management**: CRUD operations with data validation and schema enforcement.
+- **Database**: MongoDB integration for managing user data and roles.
 
 ## Tech Stack
+- **Framework**: NestJS (Node.js).
+- **Database**: MongoDB (NoSQL).
+- **Language**: TypeScript.
+- **Authentication**: JSON Web Tokens (JWT).
+- **Validation**: Class Validator for data validation.
 
-- **NestJS**: Framework for building scalable and maintainable server-side applications.
-- **MongoDB**: NoSQL database for managing users, drivers, trips, and vehicle types.
-- **JWT**: Provides secure user authentication.
-- **TypeScript**: Enables static typing for improved code quality.
-
----
-
-## Installation
+## Installation and Setup
 
 ### Prerequisites
-- **Node.js** (version 14 or later)
-- **MongoDB** (Ensure MongoDB is running)
+- Node.js installed (v16 or later).
+- MongoDB installed or access to a MongoDB cloud instance.
+- A code editor (e.g., VSCode) with TypeScript support.
+- Postman or similar tools for API testing.
 
-### Steps
-1. Clone the repository:
+### Steps to Setup
+1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/TaxiGo-trip-backend.git
+   git clone <repository_url>
+   cd taxi-go
+   ```
 
-2. Navigate into the project directory:
-    ```bash
-    cd TaxiGo-trip-backend
-3. Install the dependencies:
-  ```bash
-  npm install
-  
-4. Configure environment variables:
-   Create a .env file in the root directory.
-   Add the following variables:
+2. **Install Dependencies**:
+   Run the following command to install all the necessary dependencies:
+   ```bash
+   npm install
+   ```
+
+3. **Configure Environment Variables**:
+   Create a `.env` file in the root directory and configure the following variables:
    ```env
-    PORT=5000
-    MONGODB_URI=your_mongodb_connection_tring
-    JWT_SECRET=your_jwt_secret_key
+   DATABASE_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/taxi-go?retryWrites=true&w=majority
+   JWT_SECRET=<your_jwt_secret>
+   PORT=3000
+   ```
+   Replace `<username>`, `<password>`, and `<your_jwt_secret>` with your MongoDB credentials and a secure JWT secret key.
 
-5. Start the server:
+4. **Run the Application**:
+   Start the server with:
    ```bash
-  npm start
+   npm run start
+   ```
+   The server will run on the specified port (default: `3000`).
 
-6. The server will run on http://localhost:5000 by default.
+5. **Test the APIs**:
+   - Use Postman or similar tools to test the API endpoints.
+   - Example:
+     - **Login**: `POST /auth/login`
+     - **Get Profile**: `GET /auth/profile`
+     - **Create User**: `POST /user`
 
+## API Documentation
 
+### Authentication Endpoints
+1. **Login**:
+   - **Endpoint**: `POST /auth/login`
+   - **Body**:
+     ```json
+     {
+       "userEmail": "user@example.com",
+       "userPassword": "password123"
+     }
+     ```
+   - **Response**:
+     ```json
+     {
+       "access_token": "jwt_token"
+     }
+     ```
 
-  API Endpoints
+2. **Get Profile**:
+   - **Endpoint**: `GET /auth/profile`
+   - **Headers**:
+     - `Authorization`: `Bearer <jwt_token>`
 
-User Authentication
-POST /api/auth/register: Register a new user.
-POST /api/auth/login: Login a user and receive a JWT.
-Driver Management
-POST /api/drivers/register: Register a new driver.
-PATCH /api/drivers/:id: Update driver status.
-Trip Management
-POST /api/rides: Create a new trip.
-GET /api/rides/:id: Get trip details by ID.
-DELETE /api/rides/:id: Cancel a trip.
-City Management
-POST /api/cities: Add a new city.
-GET /api/cities: List all cities.
-Vehicle Type Management
-POST /api/vehicle-types: Add a new vehicle type.
-GET /api/vehicle-types: List all vehicle types.
-Features
+### User Management Endpoints
+1. **Create User**:
+   - **Endpoint**: `POST /user`
+   - **Body**:
+     ```json
+     {
+       "userName": "John Doe",
+       "userEmail": "john.doe@example.com",
+       "userPhone": "1234567890",
+       "userPassword": "StrongPassword123",
+       "userRoles": "user"
+     }
+     ```
 
-User Authentication: Secure login and registration using JWT.
-Driver Management: Admin functionality for managing driver onboarding and monitoring.
-Trip Scheduling: Book, view, and cancel trips.
-City Expansion: Admins can add cities to expand service areas.
+2. **Get All Users**:
+   - **Endpoint**: `GET /user`
 
+3. **Update User**:
+   - **Endpoint**: `PATCH /user/:id`
+   - **Body**:
+     ```json
+     {
+       "userName": "Updated Name"
+     }
+     ```
 
-## Project setup
+4. **Delete User**:
+   - **Endpoint**: `DELETE /user/:id`
 
+## Running Tests
+Run unit tests to ensure functionality:
 ```bash
-$ npm install
+npm run test
 ```
-
-## Compile and run the project
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
 
 ## Resources
 
@@ -185,11 +164,6 @@ Check out a few resources that may come in handy when working with NestJS:
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
