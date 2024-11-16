@@ -30,7 +30,7 @@ export class UserService {
       } else if (error.errorResponse.keyValue && error.errorResponse.keyValue.userPhone) {
         throw new HttpException({msg: 'User phone number is already registered.', status: "failed", error}, HttpStatus.BAD_REQUEST);
       } else {
-        throw new HttpException({error, msg: 'User phone number is already registered.', status: "failed" }, HttpStatus.INTERNAL_SERVER_ERROR);
+        throw new HttpException({error, msg: 'Internal server error.', status: "failed" }, HttpStatus.INTERNAL_SERVER_ERROR);
       }
     }
   }
