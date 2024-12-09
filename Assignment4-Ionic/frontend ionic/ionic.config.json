@@ -1,0 +1,7 @@
+{
+  "name": "Assignment4-TaxiGo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
