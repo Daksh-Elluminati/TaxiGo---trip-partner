@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import '../styles/forms.css'; // Retain the shared styles for both Login and Signup
 import { toast } from 'react-toastify';
 import { notifySuccess } from '@/helper/common';
+import Link from 'next/link';
 
 interface City {
   _id: string;
@@ -210,6 +211,15 @@ const Signup: React.FC = () => {
           <button type="submit" className="btn btn-primary w-100">
             Sign Up
           </button>
+
+          {/* Sign Up link */}
+          <div className="text-center mt-3">
+            <p className="text-light m-1">Already have an account? 
+              <Link href="/login">
+                <span className="text-decoration-none text-light"> Sign In</span>
+              </Link>
+            </p>
+          </div>
         </form>
       </div>
     </div>

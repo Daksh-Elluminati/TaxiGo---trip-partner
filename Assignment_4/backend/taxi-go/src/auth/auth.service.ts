@@ -17,7 +17,7 @@ export class AuthService {
     async signIn(userEmail: string, userPassword: string, role: string) : Promise<Object> {
         if (role == Role.Driver) {
             const driver = await this.DriverService.findOne(userEmail);
-            const isMatch: boolean = await bcrypt.compare(userPassword, driver.driverPassword);
+            const isMatch: boolean = await bcrypt.compare(userPassword, driver.driverPassword);            
             if (isMatch == true) {                
                 const payload = { sub: driver.id, email: driver.driverEmail, roles: driver.userRoles};
                 return { driver: driver, access_token: await this.jwtService.signAsync(payload)}
